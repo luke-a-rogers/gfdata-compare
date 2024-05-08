@@ -150,6 +150,16 @@ wrong_rows <- s1s |> dplyr::filter(fishing_event_id %in% extra_ids)
 saveRDS(extra_rows, here::here("extra-rows2.rds"))
 
 
+# Philina scatterplot originals with left_join
+s2sub <- select(s2, fishing_event_id, depth_m) |> rename(depth_m2 = depth_m)
+test <- left_join(s1, s2sub)
+plot(test$depth_m, test$depth_m2)
+
+
+
+
+# Scratch below here
+
 
 s1f |> dplyr::pull(colnames(s1f)[i])
 

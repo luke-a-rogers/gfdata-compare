@@ -21,7 +21,7 @@ An RStudio project to compare specific functions on the trials branch.
 
 ## Findings
 
-- 
+- (In progress, see compare.R)
 
 
 ## Recommendations
