@@ -1,3 +1,6 @@
+# figs
+*.png
+
 # C++
 *.o
 *.so
@@ -20,6 +23,7 @@ resdoc.tex
 *.Rdata
 *.csv
 *.rda
+*.rds
 *.xls
 *.xlsx
 

@@ -129,13 +129,25 @@ setdiff(s2s$fishing_event_id, tidyr::drop_na(s2s)$fishing_event_id)
 # --- fishing event id: 5151636
 # - s2s has 5 rows with NA values for depth where s1s has positive depths:
 # --- fishing event id: 2845587 2845590 2845591 2845593 2845602
-# - s2s has 5 additional rows with NA values:
+# - s2s has 5 additional rows with NA values and do not appear in s1s:
 # --- fishing event id: 1131552 1507010 1507016 1945203 1945230 
 
 # To be continued ;)
 
 
+# Rough
+hist(s1f$depth_m - s2f$depth_m) # Wow! Different!
 
+
+extra_ids <- c(1131552, 1507010, 1507016, 1945203, 1945230)
+
+extra_rows <- s2s |> dplyr::filter(fishing_event_id %in% extra_ids)
+
+tibble::view(extra_rows)
+
+wrong_rows <- s1s |> dplyr::filter(fishing_event_id %in% extra_ids)
+
+saveRDS(extra_rows, here::here("extra-rows2.rds"))
 
 
 
