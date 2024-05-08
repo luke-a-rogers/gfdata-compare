@@ -74,7 +74,7 @@ nrow(s2f) # 1266
 # Same fishing event ids? Yes (good)
 all.equal(s1f$fishing_event_id, s2f$fishing_event_id) # TRUE
 
-# Same column values? Mostly: NAs in s2f$depth_m
+# Same column values? Mostly: NAs in s2f$depth_m AND: Value mismatches too!
 for (i in seq_along(colnames(s1f))) {
   # Print logical
   cat(
@@ -154,6 +154,46 @@ saveRDS(extra_rows, here::here("extra-rows2.rds"))
 s2sub <- select(s2, fishing_event_id, depth_m) |> rename(depth_m2 = depth_m)
 test <- left_join(s1, s2sub)
 plot(test$depth_m, test$depth_m2)
+
+
+# Compare to updated s2 data
+
+s2u <- readRDS(here::here("dogfish-39-40-get2b.rds"))
+
+s2sub <- select(s2u, fishing_event_id, depth_m) |> rename(depth_m2 = depth_m)
+test <- left_join(s1, s2sub)
+plot(test$depth_m, test$depth_m2)
+
+
+s2sub <- s2 |>
+  select(fishing_event_id, depth_m, depth_most, depth_end) |> 
+  rename(depth_m2 = depth_m)
+test <- left_join(s1, s2sub)
+plot(test$depth_m, test$depth_m2)
+plot(test$depth_m, test$depth_most2, pch = 16, alpha = 0.01)
+plot(test$depth_m, test$depth_end2)
+
+ggplot2::ggplot(test) + 
+  ggplot2::geom_point(ggplot2::aes(depth_m, depth_most), alpha = 0.2)
+
+# Save before switch to master branch
+saveRDS(s1, here::here("s1.rds"))
+saveRDS(s2, here::here("s2.rds"))
+
+remove.packages("gfdata")
+remotes::install_github("pbs-assess/gfdata")
+
+g1 <- gfdata::get_survey_sets("044", ssid = c(39, 40))
+
+s1sub <- s1 |>
+  select(fishing_event_id, depth_m) |> 
+  rename(depth_m1 = depth_m)
+test <- left_join(g1, s1sub)
+
+ggplot2::ggplot(test) + 
+  ggplot2::geom_point(ggplot2::aes(depth_m, depth_m1), alpha = 0.2)
+
+
 
 
 
