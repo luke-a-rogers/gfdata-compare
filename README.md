@@ -6,23 +6,28 @@ An RStudio project to compare specific functions on the trials branch.
 - In scope: comparisons between trials branch and Lindsay DF survey script
 - Out of scope: comparisons between master and trials branches
 
-## Questions
+## Findings
 
 ### Inside HBLL - North Pacific Spiny Dogfish
 
-- [ ] Is `get_survey_sets2()` consistent with `get_survey_sets()`?
-- [ ] Is `get_survey_sets2()` consistent with `get_ll_hook_data()`?
+- [x] Compare `get_survey_sets2()` (s2) to `get_survey_sets()` (s1)
+  - get_survey_sets2() outputed extra text to console
+  - s2 had extra 'attributes' 
+  - s2 contained 441 extra rows with usability_code == 0 (by design?)
+  - s2 and s1 shared one NA value in time_retrieved
+  - s2 contained five extra rows, which have NAs in grouping_code
+  - s2 and s1 were otherwise equal in all shared columns
+- [X] Compare `get_survey_sets2()` (s2) to `get_ll_hook_data()` (h1)
+  - h1 had 21 extra rows after s2 was subset for usability_code == 1
+  - h1 and s2 agreed for shared columns and shared fishing event ids
+  - catch_count (s2) was similar to count_target_species (h1) but not exact
+  - the 21 extra rows in h1 did not correspond to unusable rows in s2
 
 ### Dogfish Survey - North Pacific Spiny Dogfish
 
-- [ ] Is `get_survey_sets()` consistent with Lindsay DF survey script?
-- [ ] Is `get_survey_sets2()` consistent with Lindsay DF survey script?
-- [ ] Is `get_ll_hook_data()` consistent with Lindsay DF survey script?
-
-## Findings
-
-- (In progress, see compare.R)
-
+- [ ] Compare `get_survey_sets()` to Lindsay DF survey script?
+- [ ] Compare `get_survey_sets2()` to Lindsay DF survey script?
+- [ ] Compare `get_ll_hook_data()` to Lindsay DF survey script?
 
 ## Recommendations
 
