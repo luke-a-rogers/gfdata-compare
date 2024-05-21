@@ -3,7 +3,7 @@
 An RStudio project to compare specific functions on the trials branch.
 
 - In scope: comparisons on trials branch
-- In scope: comparisons between trials branch and Lindsay DF survey script
+- In scope: check trials branch for DF survey hook comparison columns
 - Out of scope: comparisons between master and trials branches
 
 ## Findings
