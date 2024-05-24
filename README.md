@@ -30,10 +30,27 @@ An RStudio project to compare specific functions on the trials branch.
 - [x] Check `get_survey_sets2()` (s2) for dogfish survey data
 
   - none of the three returned hook comparison column fe_sub_level_id
+  
+### Jig Survey - Lingcod
+
+- [x] Check whether functions return data
+  - `get_ll_hook_data()`: empty tibble 0 rows
+  - `get_survey_sets()`: Error: No survey set data for selected species.
+  - `get_survey_sets2()`: tibble 2989 rows
+  - `get_survery_samples()`: tibble 750 rows
+- [x] Check apparent duplication of fishing event ids in `get_survey_sets2()`
+  - there were 2989 rows but only 1572 unique fishing event ids
+  - one fe id appeared as two ssids in two areas at the same time
+  - suspect other fe ids may have been duplicated in similar manner
+  - unclear whether duplication occured in database or in `get_survey_sets2()`
+- [x] Check `get_survey_samples()` for illumination about duplication
+  - specimens from investigated duplicated ssid appeared from one ssid/area
+  - trip start date did not concur with set date from `get_survey_sets2()`
 
 ## Recommendations
 
   - Address s1 & s2 differences before merge trials to main
   - Address h1 & s2 differences before use s2 for hooks
   - Develop separate function for DF/HBLL pull including hook comparison
+  - Investigate source of lingcod Jig Survey ssid/area duplication
   
